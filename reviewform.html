@@ -1,0 +1,32 @@
+<!doctype html>
+
+<html>
+<head>
+ <title>Movie Classification</title>
+</head>
+
+<body>
+	<h2>Please enter your movie review:</h2>
+	{% macro render_field(field) %}
+  <dt>{{ field.label }}
+  <dd>{{ field(**kwargs)|safe }}
+  {% if field.errors %}
+    <ul class=errors>
+    {% for error in field.errors %}
+      <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+  </dd>
+{% endmacro %}
+	<form method=post action="/results">
+		<dl>
+		{{ render_field(form.productreview, cols='30', rows='10') }}
+		</dl>
+		<div>
+			<input type=submit value='Submit review' name='submit_btn'>
+		</div>
+	</form>
+</body>
+
+</html>
